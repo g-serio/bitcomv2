@@ -14,7 +14,9 @@
       "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/public/assets/images/**)",
       "Bash(curl -s -o __TRACKED_VAR__.svg -w '%{http_code}\\\\n' https://raw.githubusercontent.com/simple-icons/simple-icons/master/icons/__TRACKED_VAR__.svg)",
       "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/public/assets/**)",
-      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/node_modules/**)"
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/node_modules/**)",
+      "Bash(ls \"//wsl.localhost/ubuntu/home/dev/temp/bitcomv2/dist/assets\" | head -10)",
+      "Bash(grep -o \"fonts.googleapis[^\\\\\"']*\" \"//wsl.localhost/ubuntu/home/dev/temp/bitcomv2/dist/assets/index-C3K8fGnT.js\" | head -3)"
     ]
   }
 }
