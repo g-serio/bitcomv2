@@ -83,14 +83,7 @@ export const HeroBentoComponent: React.FC<{ data: HeroBentoData; settings: HeroB
                     className="absolute inset-0 w-full h-full object-cover"
                     data-jp-field="featureImage"
                   />
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      backgroundColor: 'var(--local-border-strong)',
-                      mixBlendMode: 'color',
-                    }}
-                    aria-hidden
-                  />
+                 
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
