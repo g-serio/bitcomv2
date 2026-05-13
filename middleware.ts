@@ -106,8 +106,10 @@ export default async function middleware(request: Request): Promise<Response | u
   //    to allow 1h sessions without requiring the private key in the Edge Runtime.
   // parseCookies already decodes values — no extra decodeURIComponent needed here
   const sessionToken = cookies[COOKIE_NAME];
-  if (sessionToken && (await verifyAdminJwt(sessionToken, publicKey, { checkExp: false }))) {
-    return undefined;
+  if (sessionToken) {
+    const cookieValid = await verifyAdminJwt(sessionToken, publicKey, { checkExp: false });
+    console.error(`[admin-middleware] cookie check: present=${!!sessionToken} valid=${cookieValid}`);
+    if (cookieValid) return undefined;
   }
 
   // 2. Bearer token in Authorization header — full validation including exp
@@ -126,7 +128,9 @@ export default async function middleware(request: Request): Promise<Response | u
       status: 302,
       headers: {
         Location: cleanUrl.toString(),
-        'Set-Cookie': `${COOKIE_NAME}=${encodeURIComponent(queryToken)}; Path=/admin; HttpOnly; Secure; SameSite=Strict; Max-Age=${COOKIE_MAX_AGE}`,
+        // SameSite=Lax required: navigation originates from a cross-site platform (app.olon.it)
+        // SameSite=Strict would block the cookie in the redirect follow-up request
+        'Set-Cookie': `${COOKIE_NAME}=${encodeURIComponent(queryToken)}; Path=/admin; HttpOnly; Secure; SameSite=Lax; Max-Age=${COOKIE_MAX_AGE}`,
       },
     });
   }
