@@ -18,9 +18,11 @@ function base64ToArrayBuffer(b64: string): ArrayBuffer {
 }
 
 function pemToArrayBuffer(pem: string): ArrayBuffer {
+  // Handle both actual newlines and literal \n sequences (common in Vercel env vars)
   const b64 = pem
-    .replace(/-----BEGIN PUBLIC KEY-----/, '')
-    .replace(/-----END PUBLIC KEY-----/, '')
+    .replace(/-----BEGIN PUBLIC KEY-----/g, '')
+    .replace(/-----END PUBLIC KEY-----/g, '')
+    .replace(/\\n/g, '')
     .replace(/\s+/g, '');
   return base64ToArrayBuffer(b64);
 }
@@ -78,17 +80,22 @@ function parseCookies(header: string | null): Record<string, string> {
   );
 }
 
+function deny(hint: string): Response {
+  console.error(`[admin-middleware] 401 reason: ${hint}`);
+  return new Response('Unauthorized', { status: 401 });
+}
+
 export default async function middleware(request: Request): Promise<Response | undefined> {
   if (!process.env.VERCEL_ENV) return undefined;
 
   const publicKeyPem = process.env.ADMIN_PUBLIC_KEY;
-  if (!publicKeyPem) return new Response('Unauthorized', { status: 401 });
+  if (!publicKeyPem) return deny('missing_public_key');
 
   let publicKey: CryptoKey;
   try {
     publicKey = await importPublicKey(publicKeyPem);
-  } catch {
-    return new Response('Unauthorized', { status: 401 });
+  } catch (e) {
+    return deny(`key_import_failed: ${e instanceof Error ? e.message : String(e)}`);
   }
 
   const url = new URL(request.url);
@@ -97,8 +104,9 @@ export default async function middleware(request: Request): Promise<Response | u
   // 1. Session cookie — signature check only; session lifetime governed by cookie Max-Age.
   //    The JWT stored in the cookie was valid at issue time; exp is intentionally skipped
   //    to allow 1h sessions without requiring the private key in the Edge Runtime.
+  // parseCookies already decodes values — no extra decodeURIComponent needed here
   const sessionToken = cookies[COOKIE_NAME];
-  if (sessionToken && (await verifyAdminJwt(decodeURIComponent(sessionToken), publicKey, { checkExp: false }))) {
+  if (sessionToken && (await verifyAdminJwt(sessionToken, publicKey, { checkExp: false }))) {
     return undefined;
   }
 
@@ -123,5 +131,5 @@ export default async function middleware(request: Request): Promise<Response | u
     });
   }
 
-  return new Response('Unauthorized', { status: 401 });
+  return deny('token_invalid');
 }
