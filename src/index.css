@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700;800&display=swap');
+
+/* Typography contract: import this before any other CSS rules. */
+
+@import "tailwindcss";
+@source "./**/*.tsx";
+
+@theme {
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-border:               var(--border);
+  --radius-lg:                  var(--theme-radius-lg);
+  --radius-md:                  var(--theme-radius-md);
+  --radius-sm:                  var(--theme-radius-sm);
+  --font-primary: var(--theme-font-primary);
+  --font-mono:    var(--theme-font-mono);
+  --font-display: var(--theme-font-display);
+}
+
+:root {
+  --background:           var(--theme-colors-background);
+  --foreground:           var(--theme-colors-foreground);
+  --card:                 var(--theme-colors-card);
+  --card-foreground:      var(--theme-colors-card-foreground);
+  --elevated:             var(--theme-colors-elevated);
+  --overlay:              var(--theme-colors-overlay);
+  --primary:              var(--theme-colors-primary);
+  --primary-foreground:   var(--theme-colors-primary-foreground);
+  --primary-light:        var(--theme-colors-primary-light);
+  --primary-dark:         var(--theme-colors-primary-dark);
+  --secondary:            var(--theme-colors-secondary);
+  --secondary-foreground: var(--theme-colors-secondary-foreground);
+  --muted:                var(--theme-colors-muted);
+  --muted-foreground:     var(--theme-colors-muted-foreground);
+  --accent:               var(--theme-colors-accent);
+  --accent-foreground:    var(--theme-colors-accent-foreground);
+  --border:               var(--theme-colors-border);
+  --border-strong:        var(--theme-colors-border-strong);
+  --input:                var(--theme-colors-input);
+  --ring:                 var(--theme-colors-ring);
+  --destructive:          var(--theme-colors-destructive);
+  --destructive-foreground: var(--theme-colors-destructive-foreground);
+  --success:              var(--theme-colors-success);
+  --success-foreground:   var(--theme-colors-success-foreground);
+  --warning:              var(--theme-colors-warning);
+  --warning-foreground:   var(--theme-colors-warning-foreground);
+  --info:                 var(--theme-colors-info);
+  --info-foreground:      var(--theme-colors-info-foreground);
+  --radius:               var(--theme-radius-lg);
+
+  --demo-surface:         color-mix(in oklch, var(--card) 86%, var(--background));
+  --demo-surface-soft:    color-mix(in oklch, var(--card) 72%, var(--background));
+  --demo-surface-strong:  color-mix(in oklch, var(--background) 82%, black);
+  --demo-surface-deep:    color-mix(in oklch, var(--background) 70%, black);
+  --demo-border-soft:     color-mix(in oklch, var(--foreground) 8%, transparent);
+  --demo-border-strong:   color-mix(in oklch, var(--primary) 24%, transparent);
+  --demo-accent-soft:     color-mix(in oklch, var(--primary) 10%, transparent);
+  --demo-accent-strong:   color-mix(in oklch, var(--primary) 18%, transparent);
+  --demo-text-soft:       color-mix(in oklch, var(--foreground) 88%, var(--muted-foreground));
+  --demo-text-faint:      color-mix(in oklch, var(--muted-foreground) 72%, transparent);
+
+  --logo-bit-color:       var(--primary);
+  --logo-com-color:       var(--primary-light);
+}
+
+[data-theme="dark"] {
+  --logo-bit-color:       var(--foreground);
+  --logo-com-color:       var(--foreground);
+  --background:           #09131d;
+  --foreground:           #e8f1f8;
+  --card:                 #101c28;
+  --card-foreground:      #e8f1f8;
+  --elevated:             #152431;
+  --overlay:              #1b2d3c;
+  --primary:              #6ea6d1;
+  --primary-foreground:   #08121b;
+  --primary-light:        #a9d0ea;
+  --primary-dark:         #2f6fa3;
+  --secondary:            #1a2d3a;
+  --secondary-foreground: #dce8f2;
+  --muted:                #162430;
+  --muted-foreground:     #99afc2;
+  --accent:               #91d7e3;
+  --accent-foreground:    #08161c;
+  --border:               #223746;
+  --border-strong:        #335164;
+  --input:                #1b2d39;
+  --ring:                 #6ea6d1;
+  --destructive:          #d16a6a;
+  --destructive-foreground: #190d0d;
+  --success:              #63a088;
+  --success-foreground:   #081510;
+  --warning:              #d4a85f;
+  --warning-foreground:   #181109;
+  --info:                 #7fb4d6;
+  --info-foreground:      #0a141b;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    @apply antialiased;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display, var(--font-primary));
+}
+
+html { scroll-behavior: smooth; }
+
+/* TOCC — required by §7 spec */
+[data-jp-section-overlay] {
+  position: absolute; inset: 0; z-index: 9999;
+  pointer-events: none; border: 2px solid transparent;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+[data-section-id]:hover [data-jp-section-overlay] {
+  border: 2px dashed color-mix(in oklch, var(--primary) 50%, transparent);
+  background-color: color-mix(in oklch, var(--primary) 6%, transparent);
+}
+[data-section-id][data-jp-selected] [data-jp-section-overlay] {
+  border: 2px solid var(--primary);
+  background-color: color-mix(in oklch, var(--primary) 10%, transparent);
+}
+[data-jp-section-overlay] > div {
+  position: absolute; top: 0; right: 0;
+  padding: 0.2rem 0.55rem;
+  font-size: 9px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--primary); color: #fff;
+  opacity: 0; transition: opacity 0.15s;
+}
+[data-section-id]:hover [data-jp-section-overlay] > div,
+[data-section-id][data-jp-selected] [data-jp-section-overlay] > div { opacity: 1; }
+
+@keyframes jp-fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.jp-animate-in { opacity: 0; animation: jp-fadeUp 0.7s ease forwards; }
+
+/* Sheet animations — pure CSS, no plugin needed */
+@keyframes sheet-overlay-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sheet-overlay-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes sheet-slide-in-right  { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes sheet-slide-out-right { from { transform: translateX(0); }   to { transform: translateX(100%); } }
+@keyframes sheet-slide-in-left   { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes sheet-slide-out-left  { from { transform: translateX(0); }    to { transform: translateX(-100%); } }
+@keyframes sheet-slide-in-top    { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@keyframes sheet-slide-out-top   { from { transform: translateY(0); }    to { transform: translateY(-100%); } }
+@keyframes sheet-slide-in-bottom { from { transform: translateY(100%); }  to { transform: translateY(0); } }
+@keyframes sheet-slide-out-bottom{ from { transform: translateY(0); }     to { transform: translateY(100%); } }
+
+[data-slot="sheet-overlay"][data-state="open"]  { animation: sheet-overlay-in  200ms ease-out forwards; }
+[data-slot="sheet-overlay"][data-state="closed"]{ animation: sheet-overlay-out 200ms ease-in  forwards; }
+
+[data-slot="sheet-content"][data-side="right"][data-state="open"]   { animation: sheet-slide-in-right  280ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+[data-slot="sheet-content"][data-side="right"][data-state="closed"] { animation: sheet-slide-out-right 220ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+[data-slot="sheet-content"][data-side="left"][data-state="open"]    { animation: sheet-slide-in-left   280ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+[data-slot="sheet-content"][data-side="left"][data-state="closed"]  { animation: sheet-slide-out-left  220ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+[data-slot="sheet-content"][data-side="top"][data-state="open"]     { animation: sheet-slide-in-top    280ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+[data-slot="sheet-content"][data-side="top"][data-state="closed"]   { animation: sheet-slide-out-top   220ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+[data-slot="sheet-content"][data-side="bottom"][data-state="open"]  { animation: sheet-slide-in-bottom 280ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+[data-slot="sheet-content"][data-side="bottom"][data-state="closed"]{ animation: sheet-slide-out-bottom 220ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+
+/* Logo cloud — monochrome silhouette mode, theme-aware */
+.logo-mono {
+  filter: brightness(0) saturate(0);
+  opacity: 0.6;
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+[data-theme="dark"] .logo-mono {
+  filter: brightness(0) saturate(0) invert(1);
+  opacity: 0.7;
+}
+.logo-mono:hover { opacity: 1; }
+.jp-d1 { animation-delay: 0.1s; }
+.jp-d2 { animation-delay: 0.2s; }
+.jp-d3 { animation-delay: 0.3s; }
+.jp-d4 { animation-delay: 0.4s; }
+
+@keyframes jp-pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+.jp-pulse-dot { animation: jp-pulseDot 2s ease infinite; }
+

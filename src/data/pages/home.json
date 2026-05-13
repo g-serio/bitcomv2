@@ -1,0 +1,230 @@
+{
+  "id": "page-home",
+  "slug": "home",
+  "meta": {
+    "title": "BITCOM | Informatica, Riparazioni e Reti Aziendali a Palermo",
+    "description": "Negozio storico a Palermo (zona Libertà) dal 1996. Riparazione PC, smartphone e servizi B2B avanzati per aziende."
+  },
+  "sections": [
+    {
+      "id": "home-hero",
+      "type": "hero-bento",
+      "data": {
+        "label": "Palermo, Zona Libertà",
+        "title": "Tecnologia che funziona,",
+        "titleHighlight": "soluzioni che restano.",
+        "description": "Dal 1996 il tuo punto di riferimento per l'informatica a Palermo. Dalla riparazione rapida dello smartphone in negozio alla progettazione di infrastrutture di rete complesse per le aziende.",
+        "primaryCta": {
+          "id": "cta1",
+          "label": "Scopri i servizi",
+          "href": "/servizi",
+          "variant": "primary"
+        },
+        "secondaryCta": {
+          "id": "cta2",
+          "label": "Contattaci",
+          "href": "/contatti",
+          "variant": "secondary"
+        },
+        "stat1Value": "1996",
+        "stat1Label": "Anno di fondazione",
+        "stat2Value": "30k+",
+        "stat2Label": "Interventi completati",
+        "address": "Via Simone Cuccia 1B, PA",
+        "featureTitle": "Il nostro store",
+        "featureImage": {
+          "url": "https://lh3.googleusercontent.com/p/AF1QipPEkeb1rhGVen-B789_kQP8j0p_q_6RpDDlqBRY=s1360-w1360-h1020-rw",
+          "alt": ""
+        },
+        "features": [
+          {
+            "id": "f1",
+            "text": "Preventivo sempre chiaro"
+          },
+          {
+            "id": "f2",
+            "text": "Tempi certi e rispettati"
+          },
+          {
+            "id": "f3",
+            "text": "Competenza certificata"
+          }
+        ]
+      },
+      "settings": {}
+    },
+    {
+      "id": "home-logo-cloud",
+      "type": "logo-cloud",
+      "data": {
+        "label": "Tecnologie e Partner",
+        "title": "Lavoriamo con i migliori",
+        "tint": "brand",
+        "items": [
+          {
+            "id": "lc-microsoft",
+            "alt": "Microsoft",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/microsoft.svg",
+              "alt": "Microsoft"
+            }
+          },
+          {
+            "id": "lc-apple",
+            "alt": "Apple",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/apple.svg",
+              "alt": "Apple"
+            }
+          },
+          {
+            "id": "lc-samsung",
+            "alt": "Samsung",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/samsung.svg",
+              "alt": "Samsung"
+            }
+          },
+          {
+            "id": "lc-asus",
+            "alt": "Asus",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/asus.svg",
+              "alt": "Asus"
+            }
+          },
+          {
+            "id": "lc-hp",
+            "alt": "HP",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/hp.svg",
+              "alt": "HP"
+            }
+          },
+          {
+            "id": "lc-symantec",
+            "alt": "Symantec",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/symantec.svg",
+              "alt": "Symantec"
+            }
+          },
+          {
+            "id": "lc-canon",
+            "alt": "Canon",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/canon.svg",
+              "alt": "Canon"
+            }
+          },
+          {
+            "id": "lc-logitech",
+            "alt": "Logitech",
+            "height": 32,
+            "image": {
+              "url": "/assets/images/brands/logitech.svg",
+              "alt": "Logitech"
+            }
+          }
+        ]
+      },
+      "settings": {}
+    },
+    {
+      "id": "home-services",
+      "type": "services-grid",
+      "data": {
+        "label": "Cosa Facciamo",
+        "title": "Soluzioni per ogni esigenza",
+        "description": "Un ecosistema di servizi diviso in due anime: assistenza rapida per i privati e consulenza strutturata per i professionisti.",
+        "items": [
+          {
+            "id": "s1",
+            "title": "Riparazione Smartphone",
+            "description": "Assistenza rapida per iPhone e dispositivi Android. Sostituzione display, batterie e risoluzione problemi hardware.",
+            "icon": "smartphone"
+          },
+          {
+            "id": "s2",
+            "title": "Assistenza PC e Mac",
+            "description": "Riparazione notebook e desktop, formattazione, recupero dati e upgrade hardware per dare nuova vita al tuo computer.",
+            "icon": "laptop"
+          },
+          {
+            "id": "s3",
+            "title": "Infrastrutture di Rete",
+            "description": "Progettazione e cablaggio reti aziendali, configurazione server e soluzioni Wi-Fi professionali stabili e sicure.",
+            "icon": "network"
+          },
+          {
+            "id": "s4",
+            "title": "Sviluppo e Software",
+            "description": "Consulenza software per le aziende, fornitura licenze Microsoft e soluzioni gestionali su misura.",
+            "icon": "code"
+          },
+          {
+            "id": "s5",
+            "title": "Sicurezza IT",
+            "description": "Protezione dei dati aziendali, firewall, sistemi di backup automatici e assistenza on-site per professionisti.",
+            "icon": "shield"
+          },
+          {
+            "id": "s6",
+            "title": "Forniture Ufficio",
+            "description": "Vendita hardware nuovo e rigenerato, cartucce, toner compatibili e attrezzature per l'operatività quotidiana.",
+            "icon": "printer"
+          }
+        ]
+      },
+      "settings": {}
+    },
+    {
+      "id": "home-reviews",
+      "type": "reviews-slider",
+      "data": {
+        "label": "Testimonianze",
+        "title": "Cosa dicono i nostri clienti",
+        "items": [
+          {
+            "id": "r1",
+            "author": "Vito Luca",
+            "text": "Qualità e servizio eccellenti! Sicuramente consigliato. Ho trovato competenza rara per risolvere un problema al mio Mac."
+          },
+          {
+            "id": "r2",
+            "author": "Domenico Scammacca",
+            "text": "Molto preparati e professionali, cortesia e soluzioni ottimali li distinguono. Sempre disponibili e chiari nei preventivi."
+          },
+          {
+            "id": "r3",
+            "author": "Antonino Matranga",
+            "text": "Professionalità e puntualità. Ho portato il pc aziendale e hanno risolto il blocco in tempi record salvando i dati."
+          }
+        ]
+      },
+      "settings": {}
+    },
+    {
+      "id": "home-cta",
+      "type": "cta-band",
+      "data": {
+        "title": "Hai un problema informatico?",
+        "description": "Che tu sia un privato con lo smartphone rotto o un'azienda che deve cablare il nuovo ufficio, abbiamo la soluzione.",
+        "cta": {
+          "id": "cta-home",
+          "label": "Chiamaci per un preventivo",
+          "href": "/contatti",
+          "variant": "primary"
+        }
+      },
+      "settings": {}
+    }
+  ]
+}

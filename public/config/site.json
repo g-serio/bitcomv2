@@ -1,0 +1,44 @@
+{
+  "header": {
+    "id": "global-header",
+    "type": "header",
+    "data": {
+      "logoText": "BITCOM",
+      "logoHighlight": "INFORMATICA",
+      "logoImage": {
+        "url": "/assets/images/bitcomlogo.png",
+        "alt": "bitcomlogo.png"
+      },
+      "announcement": "Riparazioni veloci e progettazione reti aziendali a Palermo",
+      "menu": {
+        "$ref": "../config/menu.json#/main"
+      }
+    },
+    "settings": {
+      "sticky": true
+    }
+  },
+  "footer": {
+    "id": "global-footer",
+    "type": "footer",
+    "data": {
+      "brandText": "BITCOM Informatica",
+      "address": "Via Simone Cuccia 1B, 90144 Palermo",
+      "phone": "091 306740",
+      "email": "info@bitcom.pa.it",
+      "hours1": "Lun - Ven: 09:00 - 13:00 / 16:00 - 19:30",
+      "hours2": "Sab: 10:00 - 13:00 | Dom: Chiuso",
+      "copyright": "© 2024 B.S. Informatica di Borgese Marco & C. S.n.c. P.IVA 06244880826",
+      "menu": {
+        "$ref": "../config/menu.json#/footer"
+      }
+    },
+    "settings": {
+      "showLogo": true
+    }
+  },
+  "identity": {
+    "title": "BITCOM | Informatica Palermo"
+  },
+  "pages": []
+}

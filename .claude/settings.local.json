@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"//wsl.localhost/ubuntu/home/dev/temp/bitcomv2/src/components/\")",
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/**)",
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/public/**)",
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/src/**)",
+      "Bash(cd \"//wsl.localhost/ubuntu/home/dev/temp/bitcomv2\" && pwd && ls package.json 2>&1 | head -3)",
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/**)",
+      "Bash(npx shadcn@latest add @tailark-pro/logo-cloud-4 --yes)",
+      "Bash(wsl -d Ubuntu -- bash -lc \"cd /home/dev/temp/bitcomv2 && npx shadcn@latest add @tailark-pro/logo-cloud-4 --yes 2>&1 | tail -60\")",
+      "PowerShell(wsl.exe -d Ubuntu --cd /home/dev/temp/bitcomv2 -- bash -lc \"command -v npx; node --version; npm --version\")",
+      "Bash(mkdir -p \"//wsl.localhost/ubuntu/home/dev/temp/bitcomv2/public/assets/images/brands\")",
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/public/assets/images/**)",
+      "Bash(curl -s -o __TRACKED_VAR__.svg -w '%{http_code}\\\\n' https://raw.githubusercontent.com/simple-icons/simple-icons/master/icons/__TRACKED_VAR__.svg)",
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/public/assets/**)",
+      "Read(///wsl.localhost/ubuntu/home/dev/temp/bitcomv2/node_modules/**)"
+    ]
+  }
+}

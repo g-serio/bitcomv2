@@ -1,0 +1,74 @@
+{
+  "id": "page-aziende",
+  "slug": "aziende",
+  "meta": {
+    "title": "Servizi IT per Aziende a Palermo | BITCOM",
+    "description": "Progettazione reti, assistenza on-site e consulenza informatica per professionisti e PMI a Palermo e provincia."
+  },
+  "sections": [
+    {
+      "id": "aziende-hero",
+      "type": "hero-bento",
+      "data": {
+        "label": "Divisione B2B",
+        "title": "L'infrastruttura IT",
+        "titleHighlight": "che fa correre il tuo business.",
+        "description": "Dalla progettazione della rete locale all'assistenza continua sui server. Siamo il reparto IT in outsourcing per le aziende di Palermo che esigono stabilità e sicurezza.",
+        "primaryCta": { "id": "cta-az1", "label": "Richiedi un sopralluogo", "href": "/contatti", "variant": "primary" },
+        "stat1Value": "24h",
+        "stat1Label": "Intervento garantito",
+        "stat2Value": "100%",
+        "stat2Label": "Soluzioni su misura",
+        "features": [
+          { "id": "f1", "text": "Sopralluogo tecnico gratuito" },
+          { "id": "f2", "text": "Progettazione reti LAN/WLAN" },
+          { "id": "f3", "text": "Fornitura hardware aziendale" }
+        ]
+      },
+      "settings": {}
+    },
+    {
+      "id": "aziende-solutions",
+      "type": "business-solutions",
+      "data": {
+        "label": "Il Metodo Bitcom",
+        "title": "Come lavoriamo con le imprese",
+        "description": "Non vendiamo semplicemente computer. Analizziamo i tuoi flussi di lavoro per fornire strumenti e infrastrutture che migliorano realmente la produttività della tua azienda.",
+        "items": [
+          {
+            "id": "bs1",
+            "title": "1. Analisi e Sopralluogo",
+            "content": "Il primo passo è capire come lavorate. Veniamo in sede, analizziamo l'infrastruttura esistente, identifichiamo i colli di bottiglia e raccogliamo le vostre reali necessità operative."
+          },
+          {
+            "id": "bs2",
+            "title": "2. Progettazione e Preventivo",
+            "content": "Elaboriamo un progetto tecnico chiaro e un preventivo dettagliato. Zero sorprese: saprete esattamente cosa installeremo, i tempi necessari e i costi definitivi prima di iniziare."
+          },
+          {
+            "id": "bs3",
+            "title": "3. Implementazione",
+            "content": "Configuriamo server, stendiamo cavi di rete, installiamo postazioni di lavoro e software minimizzando l'interruzione della vostra operatività quotidiana."
+          },
+          {
+            "id": "bs4",
+            "title": "4. Formazione e Assistenza",
+            "content": "Formiamo il personale all'uso dei nuovi strumenti e garantiamo un'assistenza continuativa, con interventi rapidi on-site a Palermo e provincia o da remoto."
+          }
+        ]
+      },
+      "settings": {}
+    },
+    {
+      "id": "aziende-cta",
+      "type": "cta-band",
+      "data": {
+        "title": "Aggiorna la tua infrastruttura",
+        "description": "Una rete lenta costa tempo e denaro ogni giorno. Parliamone.",
+        "cta": { "id": "cta-az", "label": "Contatta un nostro consulente", "href": "/contatti", "variant": "primary" }
+      },
+      "settings": {}
+    }
+  ]
+}
+

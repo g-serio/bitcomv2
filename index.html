@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BITCOM | Informatica e Riparazioni a Palermo</title>
+    <meta name="description" content="Negozio storico a Palermo dal 1996. Riparazione PC, smartphone, progettazione reti aziendali e assistenza informatica zona Libertà." />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('olon:theme');
+          if (t !== 'light' && t !== 'dark') t = 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "main": [
+    {
+      "label": "Servizi",
+      "href": "/servizi"
+    },
+    {
+      "label": "Aziende",
+      "href": "/aziende"
+    },
+    {
+      "label": "Chi Siamo",
+      "href": "/chi-siamo"
+    },
+    {
+      "label": "Contatti",
+      "href": "/contatti",
+      "isCta": true
+    }
+  ],
+  "footer": [
+    {
+      "label": "Assistenza Privati",
+      "href": "/servizi"
+    },
+    {
+      "label": "Soluzioni Aziendali",
+      "href": "/aziende"
+    },
+    {
+      "label": "Privacy Policy",
+      "href": "#"
+    }
+  ]
+}
