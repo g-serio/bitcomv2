@@ -14,29 +14,15 @@
         "title": "L'infrastruttura IT",
         "titleHighlight": "che fa correre il tuo business.",
         "description": "Dalla progettazione della rete locale all'assistenza continua sui server. Siamo il reparto IT in outsourcing per le aziende di Palermo che esigono stabilità e sicurezza.",
-        "primaryCta": {
-          "id": "cta-az1",
-          "label": "Richiedi un sopralluogo",
-          "href": "/contatti",
-          "variant": "primary"
-        },
+        "primaryCta": { "id": "cta-az1", "label": "Richiedi un sopralluogo", "href": "/contatti", "variant": "primary" },
         "stat1Value": "24h",
         "stat1Label": "Intervento garantito",
         "stat2Value": "100%",
         "stat2Label": "Soluzioni su misura",
         "features": [
-          {
-            "id": "f1",
-            "text": "Sopralluogo tecnico gratuito"
-          },
-          {
-            "id": "f2",
-            "text": "Progettazione reti LAN/WLAN"
-          },
-          {
-            "id": "f3",
-            "text": "Fornitura hardware aziendale"
-          }
+          { "id": "f1", "text": "Sopralluogo tecnico gratuito" },
+          { "id": "f2", "text": "Progettazione reti LAN/WLAN" },
+          { "id": "f3", "text": "Fornitura hardware aziendale" }
         ]
       },
       "settings": {}
@@ -79,14 +65,10 @@
       "data": {
         "title": "Aggiorna la tua infrastruttura",
         "description": "Una rete lenta costa tempo e denaro ogni giorno. Parliamone.",
-        "cta": {
-          "id": "cta-az",
-          "label": "Contatta un nostro consulente",
-          "href": "/contatti",
-          "variant": "primary"
-        }
+        "cta": { "id": "cta-az", "label": "Contatta un nostro consulente", "href": "/contatti", "variant": "primary" }
       },
       "settings": {}
     }
   ]
 }
+

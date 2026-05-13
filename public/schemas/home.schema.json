@@ -1,0 +1,752 @@
+{
+  "version": "1.0.0",
+  "kind": "olonjs-page-contract",
+  "slug": "home",
+  "title": "BITCOM | Informatica, Riparazioni e Reti Aziendali a Palermo",
+  "description": "Negozio storico a Palermo (zona Libertà) dal 1996. Riparazione PC, smartphone e servizi B2B avanzati per aziende.",
+  "manifestHref": "/mcp-manifests/home.json",
+  "systemPrompt": "You are operating the \"BITCOM | Informatica, Riparazioni e Reti Aziendali a Palermo\" page in OlonJS Studio. Use only the declared tools and keep mutations valid against the section schema.",
+  "sectionTypes": [
+    "header",
+    "footer",
+    "hero-bento",
+    "logo-cloud",
+    "services-grid",
+    "reviews-slider",
+    "cta-band"
+  ],
+  "sectionInstances": [
+    {
+      "id": "global-header",
+      "type": "header",
+      "scope": "global",
+      "label": "header"
+    },
+    {
+      "id": "global-footer",
+      "type": "footer",
+      "scope": "global",
+      "label": "footer"
+    },
+    {
+      "id": "home-hero",
+      "type": "hero-bento",
+      "scope": "local",
+      "label": "Tecnologia che funziona,"
+    },
+    {
+      "id": "home-logo-cloud",
+      "type": "logo-cloud",
+      "scope": "local",
+      "label": "Lavoriamo con i migliori"
+    },
+    {
+      "id": "home-services",
+      "type": "services-grid",
+      "scope": "local",
+      "label": "Soluzioni per ogni esigenza"
+    },
+    {
+      "id": "home-reviews",
+      "type": "reviews-slider",
+      "scope": "local",
+      "label": "Cosa dicono i nostri clienti"
+    },
+    {
+      "id": "home-cta",
+      "type": "cta-band",
+      "scope": "local",
+      "label": "Hai un problema informatico?"
+    }
+  ],
+  "sectionSchemas": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorId": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "logoText": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "logoHighlight": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "logoImage": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "alt": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "url"
+          ],
+          "description": "ui:image-picker"
+        },
+        "announcement": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "menu": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              },
+              "isCta": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "href"
+            ]
+          },
+          "description": "ui:list"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "logoText"
+      ]
+    },
+    "footer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorId": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "brandText": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "address": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "phone": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "email": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "hours1": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "hours2": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "copyright": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "menu": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "href"
+            ]
+          },
+          "description": "ui:list"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "brandText",
+        "address",
+        "phone",
+        "email",
+        "hours1",
+        "hours2",
+        "copyright"
+      ]
+    },
+    "hero-bento": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorId": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "label": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "title": {
+          "type": "string",
+          "description": "ui:textarea"
+        },
+        "titleHighlight": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "description": {
+          "type": "string",
+          "description": "ui:textarea"
+        },
+        "primaryCta": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string",
+              "description": "ui:text"
+            },
+            "href": {
+              "type": "string",
+              "description": "ui:text"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "accent"
+              ],
+              "description": "ui:select",
+              "default": "primary"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "href"
+          ]
+        },
+        "secondaryCta": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string",
+              "description": "ui:text"
+            },
+            "href": {
+              "type": "string",
+              "description": "ui:text"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "accent"
+              ],
+              "description": "ui:select",
+              "default": "primary"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "href"
+          ]
+        },
+        "stat1Value": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "stat1Label": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "stat2Value": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "stat2Label": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "address": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "featureImage": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "alt": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "url"
+          ],
+          "description": "ui:image-picker"
+        },
+        "featureTitle": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "text"
+            ]
+          },
+          "description": "ui:list"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "description"
+      ]
+    },
+    "logo-cloud": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorId": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "label": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "title": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "tint": {
+          "type": "string",
+          "enum": [
+            "mono",
+            "primary",
+            "brand"
+          ],
+          "description": "ui:select"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "brand": {
+                "type": "string",
+                "enum": [
+                  "beacon",
+                  "bolt",
+                  "cisco",
+                  "hulu",
+                  "openai",
+                  "prime",
+                  "stripe",
+                  "supabase"
+                ],
+                "description": "ui:select"
+              },
+              "image": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "alt": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "url"
+                ],
+                "description": "ui:image-picker"
+              },
+              "alt": {
+                "type": "string",
+                "description": "ui:text"
+              },
+              "height": {
+                "type": "number",
+                "description": "ui:number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": "ui:list"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "items"
+      ]
+    },
+    "services-grid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorId": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "label": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "title": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "description": {
+          "type": "string",
+          "description": "ui:textarea"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "ui:textarea"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string",
+                "description": "ui:text"
+              },
+              "description": {
+                "type": "string",
+                "description": "ui:textarea"
+              },
+              "icon": {
+                "type": "string",
+                "enum": [
+                  "laptop",
+                  "smartphone",
+                  "printer",
+                  "network",
+                  "code",
+                  "shield"
+                ],
+                "description": "ui:select"
+              },
+              "category": {
+                "type": "string",
+                "description": "ui:text"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "description"
+            ]
+          },
+          "description": "ui:list"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string",
+                "description": "ui:text"
+              },
+              "description": {
+                "type": "string",
+                "description": "ui:textarea"
+              },
+              "icon": {
+                "type": "string",
+                "enum": [
+                  "laptop",
+                  "smartphone",
+                  "printer",
+                  "network",
+                  "code",
+                  "shield"
+                ],
+                "description": "ui:select"
+              },
+              "category": {
+                "type": "string",
+                "description": "ui:text"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "description"
+            ]
+          },
+          "description": "ui:list"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title"
+      ]
+    },
+    "reviews-slider": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorId": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "label": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "title": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string",
+                "description": "ui:text"
+              },
+              "text": {
+                "type": "string",
+                "description": "ui:textarea"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "author",
+              "text"
+            ]
+          },
+          "description": "ui:list"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "items"
+      ]
+    },
+    "cta-band": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorId": {
+          "type": "string",
+          "description": "ui:text"
+        },
+        "title": {
+          "type": "string",
+          "description": "ui:textarea"
+        },
+        "description": {
+          "type": "string",
+          "description": "ui:textarea"
+        },
+        "cta": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string",
+              "description": "ui:text"
+            },
+            "href": {
+              "type": "string",
+              "description": "ui:text"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "accent"
+              ],
+              "description": "ui:select",
+              "default": "primary"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "href"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "cta"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "name": "update-section",
+      "description": "Update a section field in the Studio draft. Does not persist — call save when all updates are complete. Use sectionType to select the matching schema from sectionSchemas.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "Canonical page slug currently open in Studio."
+          },
+          "sectionId": {
+            "type": "string",
+            "description": "Concrete section instance id inside the current draft."
+          },
+          "sectionType": {
+            "type": "string",
+            "description": "Section type being updated (for example \"hero\" or \"header\"). Used to select the correct validation schema."
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "local",
+              "global"
+            ],
+            "default": "local"
+          },
+          "data": {
+            "type": "object",
+            "description": "Full replacement payload validated against the schema declared for sectionType."
+          },
+          "itemPath": {
+            "type": "array",
+            "description": "Optional root-to-leaf selection path for targeted field mutation.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "fieldKey": {
+                  "type": "string"
+                },
+                "itemId": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "fieldKey"
+              ]
+            }
+          },
+          "value": {
+            "description": "Value written to the final field targeted by itemPath."
+          },
+          "fieldKey": {
+            "type": "string",
+            "description": "Shorthand for a top-level scalar field update when itemPath is omitted."
+          }
+        },
+        "required": [
+          "sectionId"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "data"
+            ]
+          },
+          {
+            "required": [
+              "itemPath",
+              "value"
+            ]
+          },
+          {
+            "required": [
+              "fieldKey",
+              "value"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "save",
+      "description": "Persist all pending draft changes using the active save mode (local file, hot save, or save2repo). Call once after all update-section calls are complete.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      }
+    }
+  ]
+}

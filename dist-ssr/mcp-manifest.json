@@ -1,0 +1,90 @@
+{
+  "version": "1.0.0",
+  "kind": "olonjs-mcp-manifest-index",
+  "generatedAt": "2026-05-13T11:20:40.370Z",
+  "pages": [
+    {
+      "slug": "aziende",
+      "title": "Servizi IT per Aziende a Palermo | BITCOM",
+      "description": "Progettazione reti, assistenza on-site e consulenza informatica per professionisti e PMI a Palermo e provincia.",
+      "manifestHref": "/mcp-manifests/aziende.json",
+      "contractHref": "/schemas/aziende.schema.json",
+      "sectionTypes": [
+        "header",
+        "footer",
+        "hero-bento",
+        "business-solutions",
+        "cta-band"
+      ]
+    },
+    {
+      "slug": "business",
+      "title": "Soluzioni per Aziende e Professionisti - BIT COM",
+      "description": "Progettazione reti, consulenza informatica e sviluppo software a Palermo per imprese e studi professionali.",
+      "manifestHref": "/mcp-manifests/business.json",
+      "contractHref": "/schemas/business.schema.json",
+      "sectionTypes": [
+        "header",
+        "footer",
+        "hero-split",
+        "pro-solutions"
+      ]
+    },
+    {
+      "slug": "chi-siamo",
+      "title": "Chi Siamo | BITCOM Palermo dal 1996",
+      "description": "La storia di BITCOM, negozio storico di informatica in via Simone Cuccia a Palermo. Trent'anni di esperienza, competenza e onestà.",
+      "manifestHref": "/mcp-manifests/chi-siamo.json",
+      "contractHref": "/schemas/chi-siamo.schema.json",
+      "sectionTypes": [
+        "header",
+        "footer",
+        "hero-bento",
+        "history-timeline"
+      ]
+    },
+    {
+      "slug": "contatti",
+      "title": "Contatti | BITCOM Palermo",
+      "description": "Vieni a trovarci in Via Simone Cuccia 1B a Palermo, oppure chiamaci allo 091 306740. Assistenza informatica per privati e aziende.",
+      "manifestHref": "/mcp-manifests/contatti.json",
+      "contractHref": "/schemas/contatti.schema.json",
+      "sectionTypes": [
+        "header",
+        "footer",
+        "hero-bento"
+      ]
+    },
+    {
+      "slug": "home",
+      "title": "BITCOM | Informatica, Riparazioni e Reti Aziendali a Palermo",
+      "description": "Negozio storico a Palermo (zona Libertà) dal 1996. Riparazione PC, smartphone e servizi B2B avanzati per aziende.",
+      "manifestHref": "/mcp-manifests/home.json",
+      "contractHref": "/schemas/home.schema.json",
+      "sectionTypes": [
+        "header",
+        "footer",
+        "hero-bento",
+        "logo-cloud",
+        "services-grid",
+        "reviews-slider",
+        "cta-band"
+      ]
+    },
+    {
+      "slug": "servizi",
+      "title": "Servizi BITCOM - Riparazione Smartphone, PC, Consulenza Aziendale",
+      "description": "Tutti i servizi BITCOM: riparazione smartphone e tablet, PC e notebook, cartucce compatibili, reti aziendali, consulenza informatica.",
+      "manifestHref": "/mcp-manifests/servizi.json",
+      "contractHref": "/schemas/servizi.schema.json",
+      "sectionTypes": [
+        "header",
+        "footer",
+        "tech-hero",
+        "service-detail",
+        "services-grid",
+        "repair-process"
+      ]
+    }
+  ]
+}
