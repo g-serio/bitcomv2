@@ -1020,7 +1020,7 @@ function App() {
               top: 0,
               left: 0,
               right: 0,
-              height: 2,
+              height: 6,
               zIndex: 1300,
               background: 'rgba(255,255,255,0.08)',
               overflow: 'hidden',
@@ -1041,7 +1041,7 @@ function App() {
       {isCloudMode && !hasInitialCloudResolved ? (
         <div className="fixed inset-0 z-[1290] bg-background/80 backdrop-blur-sm">
           <div className="mx-auto w-full max-w-[1600px] p-6">
-            <p>Loading</p>
+            // preloading state, can be enhanced with a spinner or skeletons if desired
           </div>
         </div>
       ) : null}
