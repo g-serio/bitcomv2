@@ -1,17 +1,47 @@
 {
   "rewrites": [
-    { "source": "/robots.txt",                "destination": "{BLOB_BASE}/tenants/{slug}/robots.txt" },
-    { "source": "/sitemap.xml",               "destination": "{BLOB_BASE}/tenants/{slug}/sitemap.xml" },
-    { "source": "/llms.txt",                  "destination": "{BLOB_BASE}/tenants/{slug}/llms.txt" },
-    { "source": "/mcp-manifest.json",         "destination": "{BLOB_BASE}/tenants/{slug}/mcp-manifest.json" },
-    { "source": "/mcp-manifests/:path*.json", "destination": "{BLOB_BASE}/tenants/{slug}/mcp-manifests/:path*.json" },
-    { "source": "/:path*.json",               "destination": "{BLOB_BASE}/tenants/{slug}/pages/:path*.json" },
-    { "source": "/(.*)",                      "destination": "/index.html" }
+    {
+      "source": "/robots.txt",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/sitemap.xml"
+    },
+    {
+      "source": "/llms.txt",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/llms.txt"
+    },
+    {
+      "source": "/mcp-manifest.json",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/mcp-manifest.json"
+    },
+    {
+      "source": "/mcp-manifests/:path*.json",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/mcp-manifests/:path*.json"
+    },
+    {
+      "source": "/schemas/:path*.json",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/schemas/:path*.json"
+    },
+    {
+      "source": "/:path*.json",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/pages/:path*.json"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }
