@@ -1041,7 +1041,7 @@ function App() {
       {isCloudMode && !hasInitialCloudResolved ? (
         <div className="fixed inset-0 z-[1290] bg-background/80 backdrop-blur-sm">
           <div className="mx-auto w-full max-w-[1600px] p-6">
-            // preloading state, can be enhanced with a spinner or skeletons if desired
+            
           </div>
         </div>
       ) : null}
