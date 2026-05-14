@@ -1,33 +1,46 @@
 {
   "id": "page-contatti",
-  "slug": "contatti",
   "meta": {
     "title": "Contatti | BITCOM Palermo",
     "description": "Vieni a trovarci in Via Simone Cuccia 1B a Palermo, oppure chiamaci allo 091 306740. Assistenza informatica per privati e aziende."
   },
+  "slug": "contatti",
   "sections": [
     {
       "id": "contatti-hero",
-      "type": "hero-bento",
       "data": {
         "label": "Siamo a tua disposizione",
         "title": "Parliamo del tuo",
-        "titleHighlight": "prossimo progetto IT.",
-        "description": "Che tu abbia bisogno di riparare uno smartphone o di progettare la rete del tuo nuovo ufficio, siamo qui. Passa in negozio o contattaci per fissare un sopralluogo aziendale.",
-        "primaryCta": { "id": "cta-ct1", "label": "Chiama ora: 091 306740", "href": "tel:091306740", "variant": "primary" },
         "address": "Via Simone Cuccia 1B, 90144 Palermo",
-        "stat1Value": "Lun-Ven",
-        "stat1Label": "9:00 - 13:00 / 16:00 - 19:30",
-        "stat2Value": "Sabato",
-        "stat2Label": "10:00 - 13:00",
         "features": [
-          { "id": "f1", "text": "Diagnosi gratuita per i privati" },
-          { "id": "f2", "text": "Sopralluogo gratuito per le aziende" },
-          { "id": "f3", "text": "Punto Linkem autorizzato" }
-        ]
+          {
+            "id": "f1",
+            "text": "Diagnosi gratuita per i privati"
+          },
+          {
+            "id": "f2",
+            "text": "Sopralluogo gratuito per le aziende"
+          },
+          {
+            "id": "f3",
+            "text": "Punto Linkem autorizzato"
+          }
+        ],
+        "primaryCta": {
+          "id": "cta-ct1",
+          "href": "tel:091306740",
+          "label": "Chiama ora: 091 306740",
+          "variant": "primary"
+        },
+        "stat1Label": "9:00 - 13:00 / 16:00 - 19:30",
+        "stat1Value": "Lun-Ven",
+        "stat2Label": "10:00 - 13:00",
+        "stat2Value": "Sabato",
+        "description": "Che tu abbia bisogno di riparare uno smartphone o di progettare la rete del tuo nuovo ufficio, siamo qui. Passa in negozio o contattaci per fissare un sopralluogo aziendale.",
+        "titleHighlight": "prossimo progetto IT."
       },
+      "type": "hero-bento",
       "settings": {}
     }
   ]
 }
-
