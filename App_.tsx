@@ -3,12 +3,12 @@
  * Data from getHydratedData (file-backed or draft); assets from public/assets/images.
  * Supports Hybrid Persistence: Local Filesystem (Dev) or Cloud Bridge (Prod).
  */
-import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { JsonPagesEngine } from '@olonjs/core';
 import type { JsonPagesConfig, LibraryImageEntry, ProjectState } from '@olonjs/core';
 import { normalizeBasePath, withBasePath } from '@olonjs/core';
 import { ComponentRegistry } from '@/lib/ComponentRegistry';
-import { SECTION_SCHEMAS } from '@/lib/schemas';
+import { SECTION_SCHEMAS, SECTION_SUBMISSION_SCHEMAS } from '@/lib/schemas';
 import { addSectionConfig } from '@/lib/addSectionConfig';
 import { getHydratedData } from '@/lib/draftStorage';
 import type { SiteConfig, ThemeConfig, MenuConfig, PageConfig } from '@/types';
@@ -19,14 +19,13 @@ import siteData from '@/data/config/site.json';
 import themeData from '@/data/config/theme.json';
 import menuData from '@/data/config/menu.json';
 import { getFilePages } from '@/lib/getFilePages';
-const DopaDrawer = lazy(() =>
-  import('@/components/save-drawer/DopaDrawer').then((m) => ({ default: m.DopaDrawer })),
-);
+import { DopaDrawer } from '@/components/save-drawer/DopaDrawer';
 import { EmptyTenantView } from '@/components/empty-tenant';
+import { Skeleton } from '@/components/ui/skeleton';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { useOlonForms } from '@/lib/useOlonForms';
 import { OlonFormsContext } from '@olonjs/core';
-//import { iconMap } from '@/lib/IconResolver';
+import { iconMap } from '@/lib/IconResolver';
 
 import tenantCss from './index.css?inline';
 
@@ -368,20 +367,10 @@ function buildThemeFontVarsCss(input: unknown): string {
   const tokens = isObjectRecord(input.tokens) ? input.tokens : null;
   const typography = tokens && isObjectRecord(tokens.typography) ? tokens.typography : null;
   const fontFamily = typography && isObjectRecord(typography.fontFamily) ? typography.fontFamily : null;
-  const wordmark = typography && isObjectRecord(typography.wordmark) ? typography.wordmark : null;
   const primary = typeof fontFamily?.primary === 'string' ? fontFamily.primary : "'Instrument Sans', system-ui, sans-serif";
-  const display = typeof fontFamily?.display === 'string' ? fontFamily.display : primary;
   const serif = typeof fontFamily?.serif === 'string' ? fontFamily.serif : "'Instrument Serif', Georgia, serif";
   const mono = typeof fontFamily?.mono === 'string' ? fontFamily.mono : "'JetBrains Mono', monospace";
-  const wordmarkFontFamily =
-    typeof wordmark?.fontFamily === 'string' ? wordmark.fontFamily : display;
-  const wordmarkWeight =
-    typeof wordmark?.weight === 'string' ? wordmark.weight : '700';
-  const wordmarkWidth =
-    typeof wordmark?.width === 'string' ? wordmark.width : '100';
-  const wordmarkTracking =
-    typeof wordmark?.tracking === 'string' ? wordmark.tracking : '-0.02em';
-  return `:root{--theme-font-primary:${primary};--theme-font-display:${display};--theme-font-serif:${serif};--theme-font-mono:${mono};--theme-typography-wordmark-font-family:${wordmarkFontFamily};--theme-typography-wordmark-weight:${wordmarkWeight};--theme-typography-wordmark-width:${wordmarkWidth};--theme-typography-wordmark-tracking:${wordmarkTracking};}`;
+  return `:root{--theme-font-primary:${primary};--theme-font-serif:${serif};--theme-font-mono:${mono};}`;
 }
 
 const REMOTE_CSS_LINK_ATTR = 'data-jp-tenant-remote-css';
@@ -434,14 +423,15 @@ function App() {
   const isCloudMode = Boolean(CLOUD_API_URL && CLOUD_API_KEY);
   const isSave2RepoMode = isCloudMode && SAVE2REPO_ENABLED;
   const isHotSaveMode = isCloudMode && !isSave2RepoMode;
-  const localInitialData = useMemo(() => getInitialData(), []);
+  const localInitialData = useMemo(() => (isCloudMode ? null : getInitialData()), [isCloudMode]);
   const localInitialPages = useMemo(() => {
+    if (!localInitialData) return {};
     const normalized = normalizePageRegistry(localInitialData.pages as unknown);
     return Object.keys(normalized).length > 0 ? normalized : localInitialData.pages;
   }, [localInitialData]);
   const [pages, setPages] = useState<Record<string, PageConfig>>(localInitialPages);
   const [siteConfig, setSiteConfig] = useState<SiteConfig>(
-    localInitialData.siteConfig ?? fileSiteConfig
+    localInitialData?.siteConfig ?? fileSiteConfig
   );
   const [assetsManifest, setAssetsManifest] = useState<LibraryImageEntry[]>([]);
   const [cloudSaveUi, setCloudSaveUi] = useState<CloudSaveUiState>(getInitialCloudSaveUiState);
@@ -872,13 +862,13 @@ function App() {
     basePath: APP_BASE_PATH,
     registry: ComponentRegistry as JsonPagesConfig['registry'],
     schemas: SECTION_SCHEMAS as unknown as JsonPagesConfig['schemas'],
-    //submissionSchemas: SECTION_SUBMISSION_SCHEMAS as unknown as JsonPagesConfig['submissionSchemas'],
+    submissionSchemas: SECTION_SUBMISSION_SCHEMAS as unknown as JsonPagesConfig['submissionSchemas'],
     pages,
     siteConfig,
     themeConfig,
     menuConfig,
     refDocuments,
-    //iconRegistry: iconMap,
+    iconRegistry: iconMap,
     themeCss: { tenant: resolvedTenantCss },
     addSection: addSectionConfig,
     webmcp: {
@@ -1015,8 +1005,7 @@ function App() {
     },
   };
 
-  const shouldRenderEngine = true;
-  void hasInitialCloudResolved;
+  const shouldRenderEngine = !isCloudMode || hasInitialCloudResolved;
   const isTenantEmpty = Object.keys(pages).length === 0;
 
   useEffect(() => {
@@ -1076,7 +1065,33 @@ function App() {
           </div>
         </>
       ) : null}
-     {shouldRenderEngine ? (isTenantEmpty ? <EmptyTenantView /> : <JsonPagesEngine config={config} />) : null}
+      {isCloudMode && !hasInitialCloudResolved ? (
+        <div className="fixed inset-0 z-[1290] bg-background/80 backdrop-blur-sm">
+          <div className="mx-auto w-full max-w-[1600px] p-6">
+            <div className="grid gap-4 lg:grid-cols-[1fr_420px]">
+              <div className="space-y-4">
+                <Skeleton className="h-10 w-64" />
+                <Skeleton className="h-[220px] w-full rounded-xl" />
+                <Skeleton className="h-[220px] w-full rounded-xl" />
+              </div>
+              <div className="space-y-3 rounded-xl border border-border/50 bg-card/60 p-4">
+                <Skeleton className="h-8 w-32" />
+                <Skeleton className="h-5 w-full" />
+                <Skeleton className="h-5 w-5/6" />
+                <Skeleton className="h-5 w-4/6" />
+                <Skeleton className="h-24 w-full rounded-lg" />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+     {shouldRenderEngine ? (
+        isTenantEmpty ? (
+          <EmptyTenantView />
+        ) : (
+          <JsonPagesEngine config={config} />
+        )
+      ) : null}
       {isCloudMode && (contentMode === 'error' || contentFallback?.reasonCode === 'CLOUD_REFRESH_FAILED') ? (
         <div
           role="status"
@@ -1132,21 +1147,17 @@ function App() {
           ) : null}
         </div>
       ) : null}
-      {cloudSaveUi.isOpen ? (
-        <Suspense fallback={null}>
-          <DopaDrawer
-            isOpen={cloudSaveUi.isOpen}
-            phase={cloudSaveUi.phase}
-            currentStepId={cloudSaveUi.currentStepId}
-            doneSteps={cloudSaveUi.doneSteps}
-            progress={cloudSaveUi.progress}
-            errorMessage={cloudSaveUi.errorMessage}
-            deployUrl={cloudSaveUi.deployUrl}
-            onClose={closeCloudDrawer}
-            onRetry={retryCloudSave}
-          />
-        </Suspense>
-      ) : null}
+      <DopaDrawer
+        isOpen={cloudSaveUi.isOpen}
+        phase={cloudSaveUi.phase}
+        currentStepId={cloudSaveUi.currentStepId}
+        doneSteps={cloudSaveUi.doneSteps}
+        progress={cloudSaveUi.progress}
+        errorMessage={cloudSaveUi.errorMessage}
+        deployUrl={cloudSaveUi.deployUrl}
+        onClose={closeCloudDrawer}
+        onRetry={retryCloudSave}
+      />
       </>
       </OlonFormsContext.Provider>
     </ThemeProvider>
@@ -1154,3 +1165,4 @@ function App() {
 }
 
 export default App;
+
