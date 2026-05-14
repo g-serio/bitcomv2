@@ -1041,20 +1041,7 @@ function App() {
       {isCloudMode && !hasInitialCloudResolved ? (
         <div className="fixed inset-0 z-[1290] bg-background/80 backdrop-blur-sm">
           <div className="mx-auto w-full max-w-[1600px] p-6">
-            <div className="grid gap-4 lg:grid-cols-[1fr_420px]">
-              <div className="space-y-4">
-                <Skeleton className="h-10 w-64" />
-                <Skeleton className="h-[220px] w-full rounded-xl" />
-                <Skeleton className="h-[220px] w-full rounded-xl" />
-              </div>
-              <div className="space-y-3 rounded-xl border border-border/50 bg-card/60 p-4">
-                <Skeleton className="h-8 w-32" />
-                <Skeleton className="h-5 w-full" />
-                <Skeleton className="h-5 w-5/6" />
-                <Skeleton className="h-5 w-4/6" />
-                <Skeleton className="h-24 w-full rounded-lg" />
-              </div>
-            </div>
+            <p>Loading</p>
           </div>
         </div>
       ) : null}
