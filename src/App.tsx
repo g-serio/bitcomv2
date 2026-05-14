@@ -21,7 +21,7 @@ import menuData from '@/data/config/menu.json';
 import { getFilePages } from '@/lib/getFilePages';
 import { DopaDrawer } from '@/components/save-drawer/DopaDrawer';
 import { EmptyTenantView } from '@/components/empty-tenant';
-import { Skeleton } from '@/components/ui/skeleton';
+
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { useOlonForms } from '@/lib/useOlonForms';
 import { OlonFormsContext } from '@olonjs/core';
@@ -1034,7 +1034,7 @@ function App() {
                 animation: 'jp-top-progress-slide 1.15s ease-in-out infinite',
                 willChange: 'transform',
               }}
-            />sdssd
+            />
           </div>
         </>
       ) : null}
