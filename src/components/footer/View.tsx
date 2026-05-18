@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
+import { isInAppPathHref } from '@/lib/isInAppPathHref'; // ADR-002
 import type { FooterData, FooterSettings } from './types';
 
 export const Footer: React.FC<{ data: FooterData; settings: FooterSettings }> = ({ data }) => {
@@ -44,15 +46,18 @@ export const Footer: React.FC<{ data: FooterData; settings: FooterSettings }> = 
           <div>
             <h4 className="font-display font-bold text-[var(--local-text)] mb-4">Link</h4>
             <div className="flex flex-col gap-2">
-              {navItems.map((item, idx) => (
-                <a 
-                  key={item.href + '-' + idx} 
-                  href={item.href}
-                  className="text-sm text-[var(--local-text-muted)] hover:text-[var(--local-primary)] transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item, idx) => {
+                const linkClass = "text-sm text-[var(--local-text-muted)] hover:text-[var(--local-primary)] transition-colors";
+                return isInAppPathHref(item.href) ? (
+                  <Link key={item.href + '-' + idx} to={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a key={item.href + '-' + idx} href={item.href} className={linkClass}>
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

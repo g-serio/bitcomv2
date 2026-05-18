@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import type { CtaBandData, CtaBandSettings } from './types';
 import { ArrowRight } from 'lucide-react';
+import { isInAppPathHref } from '@/lib/isInAppPathHref'; // ADR-002
 
 export const CtaBandComponent: React.FC<{ data: CtaBandData; settings: CtaBandSettings }> = ({ data }) => {
   return (
@@ -26,13 +28,15 @@ export const CtaBandComponent: React.FC<{ data: CtaBandData; settings: CtaBandSe
             {data.description}
           </p>
         )}
-        <a 
-          href={data.cta.href}
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-[var(--local-radius-md)] bg-[var(--local-text)] text-[var(--local-bg)] font-bold text-lg hover:scale-105 transition-transform"
-        >
-          {data.cta.label}
-          <ArrowRight className="w-5 h-5" />
-        </a>
+        {(() => {
+          const ctaClass = "inline-flex items-center gap-2 px-8 py-4 rounded-[var(--local-radius-md)] bg-[var(--local-text)] text-[var(--local-bg)] font-bold text-lg hover:scale-105 transition-transform";
+          const inner = <>{data.cta.label}<ArrowRight className="w-5 h-5" /></>;
+          return isInAppPathHref(data.cta.href) ? (
+            <Link to={data.cta.href} className={ctaClass}>{inner}</Link>
+          ) : (
+            <a href={data.cta.href} className={ctaClass}>{inner}</a>
+          );
+        })()}
       </div>
     </section>
   );

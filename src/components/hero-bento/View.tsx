@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import type { HeroBentoData, HeroBentoSettings } from './types';
 import { MapPin, MonitorSmartphone, Server, ArrowRight } from 'lucide-react';
+import { isInAppPathHref } from '@/lib/isInAppPathHref'; // ADR-002
 
 export const HeroBentoComponent: React.FC<{ data: HeroBentoData; settings: HeroBentoSettings }> = ({ data }) => {
   return (
@@ -52,23 +54,23 @@ export const HeroBentoComponent: React.FC<{ data: HeroBentoData; settings: HeroB
             </p>
 
             <div className="flex flex-wrap gap-4">
-              {data.primaryCta && (
-                <a 
-                  href={data.primaryCta.href}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[var(--local-radius-md)] bg-[var(--local-primary)] text-[var(--local-primary-foreground)] font-semibold text-sm hover:opacity-90 transition-opacity"
-                >
-                  {data.primaryCta.label}
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              )}
-              {data.secondaryCta && (
-                <a 
-                  href={data.secondaryCta.href}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[var(--local-radius-md)] border border-[var(--local-border)] text-[var(--local-text)] font-semibold text-sm hover:border-[var(--local-primary)] hover:text-[var(--local-primary)] transition-colors bg-[var(--local-surface)]"
-                >
-                  {data.secondaryCta.label}
-                </a>
-              )}
+              {data.primaryCta && (() => {
+                const primaryClass = "inline-flex items-center gap-2 px-6 py-3 rounded-[var(--local-radius-md)] bg-[var(--local-primary)] text-[var(--local-primary-foreground)] font-semibold text-sm hover:opacity-90 transition-opacity";
+                const inner = <>{data.primaryCta.label}<ArrowRight className="w-4 h-4" /></>;
+                return isInAppPathHref(data.primaryCta.href) ? (
+                  <Link to={data.primaryCta.href} className={primaryClass}>{inner}</Link>
+                ) : (
+                  <a href={data.primaryCta.href} className={primaryClass}>{inner}</a>
+                );
+              })()}
+              {data.secondaryCta && (() => {
+                const secondaryClass = "inline-flex items-center gap-2 px-6 py-3 rounded-[var(--local-radius-md)] border border-[var(--local-border)] text-[var(--local-text)] font-semibold text-sm hover:border-[var(--local-primary)] hover:text-[var(--local-primary)] transition-colors bg-[var(--local-surface)]";
+                return isInAppPathHref(data.secondaryCta.href) ? (
+                  <Link to={data.secondaryCta.href} className={secondaryClass}>{data.secondaryCta.label}</Link>
+                ) : (
+                  <a href={data.secondaryCta.href} className={secondaryClass}>{data.secondaryCta.label}</a>
+                );
+              })()}
             </div>
           </div>
 

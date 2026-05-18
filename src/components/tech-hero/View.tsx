@@ -1,7 +1,9 @@
 // Layout: Hero=A (SPLIT 60/40), Features=A (BENTO)
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { isInAppPathHref } from '@/lib/isInAppPathHref'; // ADR-002
 import type { TechHeroData, TechHeroSettings } from './types';
 
 export const TechHero: React.FC<{ data: TechHeroData; settings: TechHeroSettings }> = ({ data }) => {
@@ -53,20 +55,30 @@ export const TechHero: React.FC<{ data: TechHeroData; settings: TechHeroSettings
             </div>
 
             <div className="flex flex-wrap gap-4 jp-d4">
-              {data.primaryCta && (
-                <a href={data.primaryCta.href}>
+              {data.primaryCta && (() => {
+                const btn = (
                   <Button variant="default" className="bg-[var(--local-primary)] text-[var(--local-primary-foreground)] rounded-[var(--local-radius-md)] px-6 py-3">
                     {data.primaryCta.label}
                   </Button>
-                </a>
-              )}
-              {data.secondaryCta && (
-                <a href={data.secondaryCta.href}>
+                );
+                return isInAppPathHref(data.primaryCta.href) ? (
+                  <Link to={data.primaryCta.href}>{btn}</Link>
+                ) : (
+                  <a href={data.primaryCta.href}>{btn}</a>
+                );
+              })()}
+              {data.secondaryCta && (() => {
+                const btn = (
                   <Button variant="outline" className="border-[var(--local-border)] text-[var(--local-text)] rounded-[var(--local-radius-md)] px-6 py-3">
                     {data.secondaryCta.label}
                   </Button>
-                </a>
-              )}
+                );
+                return isInAppPathHref(data.secondaryCta.href) ? (
+                  <Link to={data.secondaryCta.href}>{btn}</Link>
+                ) : (
+                  <a href={data.secondaryCta.href}>{btn}</a>
+                );
+              })()}
             </div>
 
             {data.yearsFounded && (

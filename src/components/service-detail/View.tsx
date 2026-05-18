@@ -1,7 +1,9 @@
 // Layout: Hero=A (SPLIT 60/40), Features=B (HORIZONTAL SCROLL)
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Check } from 'lucide-react';
+import { isInAppPathHref } from '@/lib/isInAppPathHref'; // ADR-002
 import type { ServiceDetailData, ServiceDetailSettings } from './types';
 
 export const ServiceDetail: React.FC<{ data: ServiceDetailData; settings: ServiceDetailSettings }> = ({ data }) => {
@@ -61,15 +63,22 @@ export const ServiceDetail: React.FC<{ data: ServiceDetailData; settings: Servic
               </div>
             )}
 
-            {data.primaryCta && (
-              <div>
-                <a href={data.primaryCta.href}>
-                  <Button variant="default" className="bg-[var(--local-primary)] text-[var(--local-primary-foreground)] rounded-[var(--local-radius-md)] px-6 py-3">
-                    {data.primaryCta.label}
-                  </Button>
-                </a>
-              </div>
-            )}
+            {data.primaryCta && (() => {
+              const btn = (
+                <Button variant="default" className="bg-[var(--local-primary)] text-[var(--local-primary-foreground)] rounded-[var(--local-radius-md)] px-6 py-3">
+                  {data.primaryCta.label}
+                </Button>
+              );
+              return (
+                <div>
+                  {isInAppPathHref(data.primaryCta.href) ? (
+                    <Link to={data.primaryCta.href}>{btn}</Link>
+                  ) : (
+                    <a href={data.primaryCta.href}>{btn}</a>
+                  )}
+                </div>
+              );
+            })()}
           </div>
 
           {/* Image */}
