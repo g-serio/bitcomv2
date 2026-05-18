@@ -6,13 +6,13 @@
       "menu": {
         "$ref": "../config/menu.json#/footer"
       },
-      "email": "info@bitcom.pa.it",
-      "phone": "091 306740",
+      "email": "info@bitcom2009.it",
+      "phone": "329.3369565",
       "hours1": "Lun - Ven: 09:00 - 13:00 / 16:00 - 19:30",
-      "hours2": "Sab: 10:00 - 13:00 | Dom: Chiuso",
+      "hours2": "Sab - Dom: Chiuso",
       "address": "Via Simone Cuccia 1B, 90144 Palermo",
       "brandText": "BITCOM Informatica",
-      "copyright": "© 2024 B.S. Informatica di Borgese Marco & C. S.n.c. P.IVA 06244880826"
+      "copyright": "© 2026 B.S. Informatica S.R.L. | P.IVA 07007490829"
     },
     "type": "footer",
     "settings": {
