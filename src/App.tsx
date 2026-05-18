@@ -3,7 +3,7 @@
  * Data from getHydratedData (file-backed or draft); assets from public/assets/images.
  * Supports Hybrid Persistence: Local Filesystem (Dev) or Cloud Bridge (Prod).
  */
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react';
 import { JsonPagesEngine } from '@olonjs/core';
 import type { JsonPagesConfig, LibraryImageEntry, ProjectState } from '@olonjs/core';
 import { normalizeBasePath, withBasePath } from '@olonjs/core';
@@ -19,7 +19,9 @@ import siteData from '@/data/config/site.json';
 import themeData from '@/data/config/theme.json';
 import menuData from '@/data/config/menu.json';
 import { getFilePages } from '@/lib/getFilePages';
-import { DopaDrawer } from '@/components/save-drawer/DopaDrawer';
+const DopaDrawer = lazy(() =>
+  import('@/components/save-drawer/DopaDrawer').then((m) => ({ default: m.DopaDrawer })),
+);
 import { EmptyTenantView } from '@/components/empty-tenant';
 
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -27,12 +29,8 @@ import { useOlonForms } from '@/lib/useOlonForms';
 import { OlonFormsContext } from '@olonjs/core';
 import { iconMap } from '@/lib/IconResolver';
 
-import tenantRemoteCss from './fonts.css?inline';
 import tenantCss from './index.css?inline';
 import { extractLeadingRemoteCssImports } from '@/lib/extractLeadingRemoteCssImports';
-
-/** Remote @import first in bundle so extraction / injection order stays valid (ADR-001, fonts.css). */
-const tenantCssBundled = `${tenantRemoteCss}\n${tenantCss}`;
 
 // Cloud Configuration (Injected by Vercel/Netlify Env Vars)
 const CLOUD_API_URL =
@@ -395,15 +393,14 @@ function App() {
   const isCloudMode = Boolean(CLOUD_API_URL && CLOUD_API_KEY);
   const isSave2RepoMode = isCloudMode && SAVE2REPO_ENABLED;
   const isHotSaveMode = isCloudMode && !isSave2RepoMode;
-  const localInitialData = useMemo(() => (isCloudMode ? null : getInitialData()), [isCloudMode]);
+  const localInitialData = useMemo(() => getInitialData(), []);
   const localInitialPages = useMemo(() => {
-    if (!localInitialData) return {};
     const normalized = normalizePageRegistry(localInitialData.pages as unknown);
     return Object.keys(normalized).length > 0 ? normalized : localInitialData.pages;
   }, [localInitialData]);
   const [pages, setPages] = useState<Record<string, PageConfig>>(localInitialPages);
   const [siteConfig, setSiteConfig] = useState<SiteConfig>(
-    localInitialData?.siteConfig ?? fileSiteConfig
+    localInitialData.siteConfig ?? fileSiteConfig
   );
   const [assetsManifest, setAssetsManifest] = useState<LibraryImageEntry[]>([]);
   const [cloudSaveUi, setCloudSaveUi] = useState<CloudSaveUiState>(getInitialCloudSaveUiState);
@@ -796,11 +793,10 @@ function App() {
     void runCloudSave(pendingCloudSave.current, false);
   }, [runCloudSave]);
 
-  const tenantCssParts = useMemo(() => extractLeadingRemoteCssImports(tenantCssBundled), [tenantCssBundled]);
-  // Tenant `rest` before font :root vars — @import must stay first in the injected sheet (ADR-001).
+  const tenantCssParts = useMemo(() => extractLeadingRemoteCssImports(tenantCss), []);
   const resolvedTenantCss = useMemo(
-    () => [tenantCssParts.rest, buildThemeFontVarsCss(themeConfig)].filter(Boolean).join('\n'),
-    [tenantCssParts, themeConfig],
+    () => [buildThemeFontVarsCss(themeConfig), tenantCssParts.rest].filter(Boolean).join('\n'),
+    [tenantCssParts],
   );
 
   useEffect(() => {
@@ -978,7 +974,8 @@ function App() {
     },
   };
 
-  const shouldRenderEngine = !isCloudMode || hasInitialCloudResolved;
+  const shouldRenderEngine = true;
+  void hasInitialCloudResolved;
   const isTenantEmpty = Object.keys(pages).length === 0;
 
   useEffect(() => {
@@ -1020,7 +1017,7 @@ function App() {
               top: 0,
               left: 0,
               right: 0,
-              height: 6,
+              height: 2,
               zIndex: 1300,
               background: 'rgba(255,255,255,0.08)',
               overflow: 'hidden',
@@ -1037,13 +1034,6 @@ function App() {
             />
           </div>
         </>
-      ) : null}
-      {isCloudMode && !hasInitialCloudResolved ? (
-        <div className="fixed inset-0 z-[1290] bg-background/80 backdrop-blur-sm">
-          <div className="mx-auto w-full max-w-[1600px] p-6">
-            
-          </div>
-        </div>
       ) : null}
      {shouldRenderEngine ? (isTenantEmpty ? <EmptyTenantView /> : <JsonPagesEngine config={config} />) : null}
       {isCloudMode && (contentMode === 'error' || contentFallback?.reasonCode === 'CLOUD_REFRESH_FAILED') ? (
@@ -1101,17 +1091,21 @@ function App() {
           ) : null}
         </div>
       ) : null}
-      <DopaDrawer
-        isOpen={cloudSaveUi.isOpen}
-        phase={cloudSaveUi.phase}
-        currentStepId={cloudSaveUi.currentStepId}
-        doneSteps={cloudSaveUi.doneSteps}
-        progress={cloudSaveUi.progress}
-        errorMessage={cloudSaveUi.errorMessage}
-        deployUrl={cloudSaveUi.deployUrl}
-        onClose={closeCloudDrawer}
-        onRetry={retryCloudSave}
-      />
+      {cloudSaveUi.isOpen ? (
+        <Suspense fallback={null}>
+          <DopaDrawer
+            isOpen={cloudSaveUi.isOpen}
+            phase={cloudSaveUi.phase}
+            currentStepId={cloudSaveUi.currentStepId}
+            doneSteps={cloudSaveUi.doneSteps}
+            progress={cloudSaveUi.progress}
+            errorMessage={cloudSaveUi.errorMessage}
+            deployUrl={cloudSaveUi.deployUrl}
+            onClose={closeCloudDrawer}
+            onRetry={retryCloudSave}
+          />
+        </Suspense>
+      ) : null}
       </>
       </OlonFormsContext.Provider>
     </ThemeProvider>
