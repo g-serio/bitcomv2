@@ -13,6 +13,10 @@
       "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/llms.txt"
     },
     {
+      "source": "/.well-known/agent-card.json",
+      "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/.well-known/agent-card.json"
+    },
+    {
       "source": "/mcp-manifest.json",
       "destination": "https://bat5elmxofxdroan.public.blob.vercel-storage.com/tenants/bitcomv2/mcp-manifest.json"
     },
