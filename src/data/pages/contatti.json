@@ -20,16 +20,12 @@
           {
             "id": "f2",
             "text": "Sopralluogo gratuito per le aziende"
-          },
-          {
-            "id": "f3",
-            "text": "Punto Linkem autorizzato"
           }
         ],
         "primaryCta": {
           "id": "cta-ct1",
-          "href": "tel:091306740",
-          "label": "Chiama ora: 091 306740",
+          "href": "tel:3293369565",
+          "label": "Chiama ora: 329 3369565",
           "variant": "primary"
         },
         "stat1Label": "9:00 - 13:00 / 16:00 - 19:30",
